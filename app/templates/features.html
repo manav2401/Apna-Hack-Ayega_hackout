@@ -1,0 +1,208 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Sumon Rahman">
+    <meta name="description" content="">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title>Appy App Landing Template.</title>
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
+    <!-- Plugin-CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/css/linearicons.css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <!-- Main-Stylesheets -->
+    <link rel="stylesheet" href="/static/css/normalize.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <script src="/static/js/vendor/modernizr-2.8.3.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="/static/css/style1.css" rel="stylesheet" />
+</head>
+
+<body data-spy="scroll" data-target=".mainmenu-area">
+    <!-- Preloader-content -->
+    <div class="preloader">
+        <span><i class="lnr lnr-sun"></i></span>
+    </div>
+    <!-- MainMenu-Area -->
+    <nav class="mainmenu-area" data-spy="affix" data-offset-top="200">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary_menu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img src="/static/images/logo.png" alt="Logo"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="primary_menu">
+                <ul class="nav navbar-nav mainmenu">
+                    <li class="active"><a href="#home_page">Home</a></li>
+                    <li><a href="index">About</a></li>
+                    <li><a href="features">Features</a></li>
+                    <li><a href="advanced">Advanced Features</a></li>
+                    <li><a href="statistics">Statistics</a></li>
+                    
+                </ul>
+                <div class="right-button hidden-xs">
+                    <a href="#">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+
+                        <div id="map">
+      
+                          <script>
+                          
+                          function initm() {
+
+                          var point_1 = {
+                          info: "Pothole",
+                            lat: 23.187247,
+                            long: 72.627666,
+                          }
+
+                          var point_2 = {
+                          info: "Pothole",
+                            lat: 23.188808,
+                            long: 72.627243,
+                          }
+
+                          var locations = '{{ vari }}';
+                          //console.log(locations)
+
+                          var arrloc = locations.split(",");
+                          //console.log(arrloc[1])
+                          //console.log(arrloc[5])
+
+                          //var locations = [
+                          //  [point_1.info, point_1.lat, point_1.long, 0],
+                          //  [point_2.info, point_2.lat, point_2.long, 1],
+                          //]
+
+                          //var loc = {{ vari }}
+                        /*
+                          var reader = new FileReader();
+                          reader.onload = function(){
+                            console.log(reader.result);
+                          }
+                          reader.readAsBinaryString("output.txt");*/
+
+                          //const fs = require('fs') 
+                            
+                          //fs.readFile('output.txt', 'utf-8', (err, data) => { 
+                          //    if (err) throw err; 
+                            
+                          //    console.log(data); 
+                          //}) 
+
+                          var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 20,
+                            center: new google.maps.LatLng(23.187590, 72.628985),
+                            mapTypeId: google.maps.MapTypeId.ROADMAP,
+                          })
+
+                          var infowindow = new google.maps.InfoWindow({})
+
+                          var marker, i
+
+                          for (i = 1; i <= arrloc.length; i=i+4) {
+                            console.log(arrloc[i])
+                            console.log(arrloc[i+1])
+                            marker = new google.maps.Marker({
+                              position: new google.maps.LatLng(arrloc[i], arrloc[i+1]),
+                              icon: 'dot.png',
+                              map: map,
+                            })
+
+                            google.maps.event.addListener(
+                              marker,
+                              'click',
+                              (function(marker, i) {
+                                return function() {
+                                  infowindow.setContent(arrloc[i-1])
+                                  infowindow.open(map, marker)
+                                }
+                              })(marker, i)
+                            )
+                          }
+                        }
+                        //window.initMap = initMap;
+
+
+                        </script>
+                        <script
+                          async
+                          defer
+                          src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initm"
+                        ></script>
+
+
+
+                        </div>
+                
+
+
+    <!-- Subscribe-Form-Area -->
+    <!-- Footer-Area -->
+    <footer class="footer-area" id="contact_page">
+        
+        <!-- Footer-Bootom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-5">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            <span>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="lnr lnr-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></span>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <div class="space-30 hidden visible-xs"></div>
+                    </div>
+                    <div class="col-xs-12 col-md-7">
+                        <div class="footer-menu">
+                            <ul>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Services</a></li>
+                                <li><a href="#">Features</a></li>
+                                <li><a href="#">Pricing</a></li>
+                                <li><a href="#">Testimonial</a></li>
+                                <li><a href="#">Contacts</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer-Bootom-End -->
+    </footer>
+    <!-- Footer-Area-End -->
+    <!--Vendor-JS-->
+    <script src="/static/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/static/js/vendor/jquery-ui.js"></script>
+    <script src="/static/js/vendor/bootstrap.min.js"></script>
+    <!--Plugin-JS-->
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/contact-form.js"></script>
+    <script src="/static/js/ajaxchimp.js"></script>
+    <script src="/static/js/scrollUp.min.js"></script>
+    <script src="/static/js/magnific-popup.min.js"></script>
+    <script src="/static/js/wow.min.js"></script>
+    <!--Main-active-JS-->
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>

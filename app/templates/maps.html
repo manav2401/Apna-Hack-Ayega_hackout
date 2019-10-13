@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Google Maps APIs</title>
+
+    <link href="/static/css/style1.css" rel="stylesheet" />
+  </head>
+
+  
+
+  <body>
+    
+    <div id="map">
+      
+  <script>
+  
+  function initm() {
+
+  var point_1 = {
+  info: "Pothole",
+    lat: 23.187247,
+    long: 72.627666,
+  }
+
+  var point_2 = {
+  info: "Pothole",
+    lat: 23.188808,
+    long: 72.627243,
+  }
+
+  var locations = '{{ vari }}';
+  //console.log(locations)
+
+  var arrloc = locations.split(",");
+  //console.log(arrloc[1])
+  //console.log(arrloc[5])
+
+  //var locations = [
+  //  [point_1.info, point_1.lat, point_1.long, 0],
+  //  [point_2.info, point_2.lat, point_2.long, 1],
+  //]
+
+  //var loc = {{ vari }}
+/*
+  var reader = new FileReader();
+  reader.onload = function(){
+    console.log(reader.result);
+  }
+  reader.readAsBinaryString("output.txt");*/
+
+  //const fs = require('fs') 
+    
+  //fs.readFile('output.txt', 'utf-8', (err, data) => { 
+  //    if (err) throw err; 
+    
+  //    console.log(data); 
+  //}) 
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 17,
+    center: new google.maps.LatLng(23.188414, 72.627876),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+  })
+
+  var infowindow = new google.maps.InfoWindow({})
+
+  var marker, i
+
+  for (i = 1; i <= arrloc.length; i=i+4) {
+    console.log(arrloc[i])
+    console.log(arrloc[i+1])
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(arrloc[i], arrloc[i+1]),
+      icon: 'dot.png',
+      map: map,
+    })
+
+    google.maps.event.addListener(
+      marker,
+      'click',
+      (function(marker, i) {
+        return function() {
+          infowindow.setContent(arrloc[i-1])
+          infowindow.open(map, marker)
+        }
+      })(marker, i)
+    )
+  }
+}
+//window.initMap = initMap;
+
+
+</script>
+<script
+  async
+  defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMxVyj8y-9BFHC_ZaKNybVaWaVlVxQYLk&callback=initm"
+></script>
+  </body>
+</html>
